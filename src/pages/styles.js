@@ -17,6 +17,7 @@ export const Container = styled.div`
     transition: border-color 0.5s;
   }
 
+
   input:hover{
     border-color:   #56874a;
   }
@@ -24,6 +25,7 @@ export const Container = styled.div`
   input:focus{
     outline: 5px auto #56874a;
   }
+
 
   button {
     border-radius: 8px;
