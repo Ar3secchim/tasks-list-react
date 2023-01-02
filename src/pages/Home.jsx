@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 
 import { ReactComponent as Tasks } from '../assets/tasks.svg'
@@ -9,29 +9,47 @@ import { Container, Title } from './styles'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
-  const notify = () => {
+  const notifyError = () => {
     toast.error("Adicione um tarefa", {
       position: "top-center",
       theme: "colored",
       autoClose: 2000,
     });
-
   }
+
+  const notifyTaskAdd = () => {
+    toast.success("Tarefa adicionada", {
+      position: "top-center",
+      theme: "light",
+      autoClose: 2000,
+    });
+  }
+
   const [task, setTask] = useState("")
   const [listTasks, setListTasks] = useState(() => {
-    return []
+    return JSON.parse(localStorage.getItem("listLocalStorage"))
   })
+  const [listLocalStorage, setListLocalStorage] = useState(listTasks)
+
+  useEffect(() => {
+    setListLocalStorage(listTasks)
+    localStorage.setItem("listLocalStorage", JSON.stringify(listTasks))
+  }, [listTasks]);
 
   const addTasks = () => {
-    if (!task) return notify()
+    if (!task) return notifyError()
+
     const newTask = {
       id: Math.random(),
       task: task,
       checked: false,
     }
     setListTasks([...listTasks, newTask])
+    notifyTaskAdd()
     setTask("")
   }
+
+
 
   const removeTasks = (id) => {
     const NewList = listTasks.filter((task) => task.id !== id);
@@ -44,6 +62,8 @@ function App() {
     newList[index].checked = !checked
     setListTasks([...newList])
   }
+
+
 
   return (
     <>
