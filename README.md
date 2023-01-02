@@ -6,7 +6,7 @@ Projeto desenvolvido no Curso da CodarMe do Bruno Bertolini com o objetivo de ap
 &nbsp;
 ## Screenshot
 
-Insira um gif ou um link de alguma demonstração
+https://user-images.githubusercontent.com/82913620/210245877-aa7995fd-1fb2-4d27-8056-855e7530268e.mp4
 
 &nbsp;
 ## Funcionalidades
