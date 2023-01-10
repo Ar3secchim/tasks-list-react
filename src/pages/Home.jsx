@@ -27,7 +27,7 @@ function App() {
 
   const [task, setTask] = useState("")
   const [listTasks, setListTasks] = useState(() => {
-    return JSON.parse(localStorage.getItem("listLocalStorage"))
+    return JSON.parse(localStorage.getItem("listLocalStorage") || [])
   })
   const [listLocalStorage, setListLocalStorage] = useState(listTasks)
 
