@@ -27,7 +27,7 @@ function App() {
 
   const [task, setTask] = useState("")
   const [listTasks, setListTasks] = useState(() => {
-    return JSON.parse(localStorage.getItem("listLocalStorage") || [])
+    return JSON.parse(localStorage.getItem("listLocalStorage")) || []
   })
   const [listLocalStorage, setListLocalStorage] = useState(listTasks)
 
@@ -48,8 +48,6 @@ function App() {
     notifyTaskAdd()
     setTask("")
   }
-
-
 
   const removeTasks = (id) => {
     const NewList = listTasks.filter((task) => task.id !== id);
