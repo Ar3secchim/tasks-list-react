@@ -1,40 +1,30 @@
-import http, { METHODS } from 'http';
+import http from 'http';
+import url from 'url';
+import {routes} from './routes.js';
+import {bodyParser} from './helpers/bodyParser.js';
 
-const toDoList =[
-  {
-    id: 1,
-    name: 'John',
-  },
-  {
-    id: 2,
-    name: 'Paul',
-  }
-]
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   
-  if(req.method === 'POST'){
-    let body = [];
-    req.on('data', (chunk) => {
-      body.push(chunk);
-    }).on('end', () => {
-      const content = Buffer.concat(body).toString();
-      const data = JSON.parse(content);
-      const newToDo = {
-        id: toDoList.length + 1,
-        name: data.name,
-      }
-      toDoList.push(newToDo);
-      
-      res.statusCode = 201;
-      res.end(JSON.stringify(newToDo));
-    })
+  const parsedUrl = url.parse(req.url)
 
-  }else{
-    res.statusCode = 200;
-    res.end(JSON.stringify(toDoList));
+  const route = routes.find((routeObj) => 
+    routeObj.endpoint === parsedUrl.pathname && routeObj.method === req.method
+  );
+
+  if (route) {
+    if(req.method === "GET"){
+      route.handler(req, res);
+    }else{
+      bodyParser(req, () => route.handler(req, res));
+    }
+  }else {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(`Cannot ${req.method} ${parsedUrl.pathname}`);
   }
 });
 
-server.listen(3000)
+server.listen(3000, () => {
+  console.log('🔥 Server running on port 3000');
+})
