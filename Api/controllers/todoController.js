@@ -54,7 +54,6 @@ export function update(req, res){
 
 export function deleteTodo(req, res){
   const { body } = req;
-  console.log(body)
 
   let id = body.id;
   id = Number(id);

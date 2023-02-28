@@ -1,6 +1,6 @@
 export const bodyParser= (req, callback) => {
   let body = [];
-  
+  // contorlador de pedaços da chamada do body
   req.on('data', (chunk) => {
     body.push(chunk);
   }).on('end', () => {
