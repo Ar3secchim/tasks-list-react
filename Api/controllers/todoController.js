@@ -10,33 +10,27 @@ let toDoList =[
 ]
 
 export function create(req, res){
-  const { body } = req;
+  const { name } = req.body;
 
   const newToDo = {
-    id: toDoList.length + 1,
-    name: body.name,
+    id: toDoList.length+1,
+    name: name,
   }
   toDoList.push(newToDo);
-  
-  res.statusCode = 201;
-  res.end(JSON.stringify(newToDo));
+
+  res.status(204).end(JSON.stringify(newToDo))
 }
 
 export function update(req, res){
-  const { body } = req;
-  console.log(body)
+  const { id, name } = req.body;
 
-  let id = body.id;
-  id = Number(id);
-
-  const name = body.name;
   const todoExist = toDoList.find((todo) => todo.id === id);
 
   if (!todoExist) {
     res.statusCode = 404;
     res.end(JSON.stringify({ message: 'Todo not found' }));
   }
-  
+
   toDoList = toDoList.map((todo) =>{
     if(todo.id === id){
       return {
@@ -53,18 +47,20 @@ export function update(req, res){
 }
 
 export function deleteTodo(req, res){
-  const { body } = req;
+  const { id } = req.body
 
-  let id = body.id;
-  id = Number(id);
+  const todoExist = toDoList.find((todo) => todo.id === Number(id));
 
-  toDoList = toDoList.filter((todo) => todo.id !== id);
+  if (!todoExist) {
+    return res.status(404).json({ message: 'Todo not found' });
+  }
 
+  toDoList = toDoList.filter((todo) => todo.id !== Number(id));
   res.statusCode = 204;
   res.end(JSON.stringify(toDoList));
 }
 
-export function list (req, res){
+export function findAll (req, res){
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify(toDoList));
 }
