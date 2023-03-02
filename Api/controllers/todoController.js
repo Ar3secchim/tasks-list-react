@@ -1,66 +1,55 @@
-let toDoList =[
-  {
-    id: 1,
-    name: 'John',
-  },
-  {
-    id: 2,
-    name: 'Paul',
-  }
-]
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
-export function create(req, res){
-  const { name } = req.body;
+export const  create= async (req, res)=> {
+  const { name, status } = req.body;
 
-  const newToDo = {
-    id: toDoList.length+1,
-    name: name,
-  }
-  toDoList.push(newToDo);
-
-  res.status(204).end(JSON.stringify(newToDo))
-}
-
-export function update(req, res){
-  const { id, name } = req.body;
-
-  const todoExist = toDoList.find((todo) => todo.id === id);
-
-  if (!todoExist) {
-    res.statusCode = 404;
-    res.end(JSON.stringify({ message: 'Todo not found' }));
-  }
-
-  toDoList = toDoList.map((todo) =>{
-    if(todo.id === id){
-      return {
-        id,
-        name,
-      }
+  const newToDo= await prisma.task.create({
+    data: {
+      name,
+      status,
     }
-    return todo;
   })
 
-  res.statusCode = 204;
-  res.end(JSON.stringify({id, name}));
-
+  res.status(201).end(JSON.stringify(newToDo))
 }
 
-export function deleteTodo(req, res){
-  const { id } = req.body
-
-  const todoExist = toDoList.find((todo) => todo.id === Number(id));
-
-  if (!todoExist) {
-    return res.status(404).json({ message: 'Todo not found' });
+export const  update = async (req, res)=>{
+  const { id, name } = req.body;
+  try{
+    await prisma.task.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+      },
+    })
+  }catch(err){
+  res.status(400).json({message: err.message})
   }
 
-  toDoList = toDoList.filter((todo) => todo.id !== Number(id));
-  res.statusCode = 204;
-  res.end(JSON.stringify(toDoList));
+  res.status(204).end()
 }
 
-export function findAll (req, res){
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify(toDoList));
+export const  deleteTodo= async (req, res) =>{
+  const { id } = req.body
+  try{
+    await prisma.task.delete({
+      where: {
+        id,
+      }
+    })
+  } catch(err){
+    res.statusCode = 404;
+    res.end(JSON.stringify({ message: 'tasks do not exist' }));
+  }
+
+  res.status(200).end();
+}
+
+export const findAll = async (req, res)=>{
+  const toDoList = await prisma.task.findMany();
+
+  res.status(200).end(JSON.stringify(toDoList));
 }
