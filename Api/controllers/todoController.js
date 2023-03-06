@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-export const  create= async (req, res)=> {
+export const  create = async (req, res)=> {
   const { name, status } = req.body;
 
   const newToDo= await prisma.task.create({
@@ -15,7 +15,8 @@ export const  create= async (req, res)=> {
 }
 
 export const  update = async (req, res)=>{
-  const { id, name } = req.body;
+  const {id} = req.params;
+  const { name, status } = req.body;
   try{
     await prisma.task.update({
       where: {
@@ -23,6 +24,7 @@ export const  update = async (req, res)=>{
       },
       data: {
         name,
+        status,
       },
     })
   }catch(err){
@@ -33,7 +35,8 @@ export const  update = async (req, res)=>{
 }
 
 export const  deleteTodo= async (req, res) =>{
-  const { id } = req.body
+  const { id } = req.params
+
   try{
     await prisma.task.delete({
       where: {
