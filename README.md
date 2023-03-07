@@ -11,12 +11,16 @@ https://user-images.githubusercontent.com/82913620/210245877-aa7995fd-1fb2-4d27-
 &nbsp;
 ## Funcionalidades
 
-- Temas dark e light
 - Preview em tempo real
-- LocalStorage
+- Armazenamendo em um banco de dados
 - Animations
 - Desing responsivo
 - useHooks react
+
+## Funcionalidades em produção
+- Temas black
+- Migração para NextJs
+- Login com Google (conexão de um usuário)
 
 &nbsp;
 ## Feedback
@@ -27,5 +31,11 @@ Se você tiver algum feedback, por favor nos deixe saber por meio de renarasecch
 ## Stack utilizada
 
 **Front-end:** HTML, CSS, JavaScript
+**Back-end:** : nodeJs com Express
+**Libary:**  React, styled-components, React-toastify, prisma
+**Data-Base**: Planet-scale
 
-**Libary:**  React, styled-components, React-toastify.
+## Maiores obstáculos
+- Conexão com um banco de dados
+- Criação de routas com nodeJs
+- Render de componetes com useStage
