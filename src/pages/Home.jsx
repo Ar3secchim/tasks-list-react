@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 import { ReactComponent as Tasks } from '../assets/tasks.svg'
 import { ReactComponent as Boards } from '../assets/board.svg'
@@ -26,42 +27,62 @@ function App() {
   }
 
   const [task, setTask] = useState("")
-  const [listTasks, setListTasks] = useState(() => {
-    return JSON.parse(localStorage.getItem("listLocalStorage")) || []
-  })
-  const [listLocalStorage, setListLocalStorage] = useState(listTasks)
+  const [listTasks, setListTasks] = useState([])
 
   useEffect(() => {
-    setListLocalStorage(listTasks)
-    localStorage.setItem("listLocalStorage", JSON.stringify(listTasks))
+      fetch("http://localhost:3000")
+      .then(response => response.json())
+      .then(data => setListTasks(data))
+      .catch(error => console.error(error));
   }, [listTasks]);
 
   const addTasks = () => {
     if (!task) return notifyError()
 
-    const newTask = {
-      id: Math.random(),
-      task: task,
-      checked: false,
-    }
-    setListTasks([...listTasks, newTask])
+    axios.post("http://localhost:3000/", {
+        name: task,
+        status : false,
+    }) .then(response => {
+      setTask("")
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
     notifyTaskAdd()
     setTask("")
   }
 
   const removeTasks = (id) => {
-    const NewList = listTasks.filter((task) => task.id !== id);
-    setListTasks(NewList)
+    axios.delete(`http://localhost:3000/${id}`,{
+      data: {
+        id
+      }
+    })
+    .then(response => {
+      setListTasks(listTasks.filter(data => task.id !== id))
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
-  const checkedTask = (id, checked) => {
-    const index = listTasks.findIndex(task => task.id === id)
-    const newList = listTasks
-    newList[index].checked = !checked
-    setListTasks([...newList])
+  const updateTask = (id, status, name) => {
+    axios.put(`http://localhost:3000/${id}`, {
+      id,
+      status: !status,
+      name,
+    })
+    .then(response => {
+      setListTasks(listTasks.map(data => data.id === id
+        ? response.data :
+        {...data})
+      )
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
-
-
 
   return (
     <>
@@ -90,11 +111,11 @@ function App() {
 
       {listTasks.map((task) => {
         return <CardTasks
-          Name={task.task}
+          Name={task.name}
           key={task.id}
-          Checked={task.checked}
+          Status={task.status}
           RemoveTask={() => removeTasks(task.id)}
-          CheckedTask={() => checkedTask(task.id, task.checked)}
+          CheckedTask={() => updateTask(task.id, task.status, task.name)}
         />
       })}
     </>

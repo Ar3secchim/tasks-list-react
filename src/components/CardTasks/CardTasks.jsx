@@ -5,16 +5,16 @@ import { ReactComponent as ImgUnchecked } from '../../assets/unchecked.svg'
 import { ContainerCard, Rows, ContainerButton } from './style';
 
 
-export function CardTasks({ Name, Checked, CheckedTask, RemoveTask}) {
+export function CardTasks({ Name, Status, CheckedTask, RemoveTask}) {
 
    return (
 
-      <ContainerCard  checked={Checked}>
+      <ContainerCard  status={Status}>
          <Rows >
             <ContainerButton>
                <button onClick={CheckedTask}>
-                  {!Checked && <ImgChecked width={24} stroke="#4C535B" />}
-                  {Checked && <ImgUnchecked width={22} />}
+                  {!Status && <ImgChecked width={24} stroke="#4e5b4c"  />}
+                  {Status && <ImgUnchecked width={22} />}
                </button>
             </ContainerButton>
 
