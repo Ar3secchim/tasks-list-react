@@ -5,5 +5,5 @@ export const routes = Router()
 
 routes.get('/', findAll)
 routes.post('/', create)
-routes.delete('/', deleteTodo)
-routes.put('/', update)
+routes.delete('/:id', deleteTodo)
+routes.put('/:id', update)

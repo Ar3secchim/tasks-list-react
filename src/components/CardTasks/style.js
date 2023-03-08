@@ -6,7 +6,7 @@ export const ContainerCard = styled.div`
   justify-content: space-between;
 
   border-radius: 1rem;
-  border: ${props => props.checked ? "solid 0.2rem #02B553": "solid 0.2rem #F5F4F6"};
+  border: ${props => props.status ? "solid 0.15rem #02B553": "solid 0.15rem #F5F4F6"};
   background-color: #FFFFFF;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -15,8 +15,8 @@ export const ContainerCard = styled.div`
     margin: 0;
     font-size: 1.2rem;
     margin-left: 1rem;
-    color: ${props => props.checked ? "#02B553" : "black"};
-    text-decoration: ${props => props.checked ? "line-through" : "none"};
+    color: ${props => props.status ? "#02B553" : "black"};
+    text-decoration: ${props => props.status ? "line-through" : "none"};
   }
 `
 
