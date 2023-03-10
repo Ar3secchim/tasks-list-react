@@ -30,7 +30,7 @@ function App() {
   const [listTasks, setListTasks] = useState([])
 
   useEffect(() => {
-      fetch("https://tasks-list-gilt.vercel.app/")
+      fetch("http://localhost:3000")
       .then(response => response.json())
       .then(data => setListTasks(data))
       .catch(error => console.error(error));
@@ -39,7 +39,7 @@ function App() {
   const addTasks = () => {
     if (!task) return notifyError()
 
-    axios.post("https://tasks-list-gilt.vercel.app/", {
+    axios.post("http://localhost:3000/", {
         name: task,
         status : false,
     }) .then(response => {
@@ -54,7 +54,7 @@ function App() {
   }
 
   const removeTasks = (id) => {
-    axios.delete(`https://tasks-list-gilt.vercel.app/${id}`,{
+    axios.delete(`http://localhost:3000/${id}`,{
       data: {
         id
       }
@@ -68,7 +68,7 @@ function App() {
   }
 
   const updateTask = (id, status, name) => {
-    axios.put(`https://tasks-list-gilt.vercel.app/${id}`, {
+    axios.put(`http://localhost:3000/${id}`, {
       id,
       status: !status,
       name,
