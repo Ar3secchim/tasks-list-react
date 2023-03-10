@@ -8,6 +8,6 @@ app.use(cors())
 app.use(express.json())
 app.use(routes)
 
-app.listen(3000, () => {
+app.listen('https://tasks-list-gilt.vercel.app/', () => {
   console.log('🔥 Server running on port http://localhost:3000');
 })
