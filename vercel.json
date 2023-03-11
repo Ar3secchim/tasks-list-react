@@ -1,6 +1,6 @@
 {
   "rewrite":[{
     "source":"/(.*)",
-    "destination":"/Api"
+    "destination":"/api"
   }]
 }
