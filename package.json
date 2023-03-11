@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "npx nodemon Api/index.js",
+    "vercel-deploy": "npx nodemon Api/index.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
