@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "npx nodemon Api/index.js",
-    "vercel-deploy": "npx nodemon Api/index.js",
+    "start": "npx nodemon api/index.js",
+    "vercel-deploy": "npx nodemon api/index.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
