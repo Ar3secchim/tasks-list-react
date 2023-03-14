@@ -10,17 +10,18 @@ https://user-images.githubusercontent.com/82913620/210245877-aa7995fd-1fb2-4d27-
 &nbsp;
 ## Funcionalidades
 
-- Armazenamendo em um banco de dados
-- Animations
-- Desing responsivo
-- useHooks react
+- 🚀 O projeto é totalmente responsivo em todos os dispositivos.
+- 📦 Prisma é usado como camada de abstração de dados e MySql para armazenamento.
+- 🌈 Styled-Components é usado para estilizar o projeto.
+- 📱 O projeto é implementado usando React, NodeJs com Express e Planet-scale como banco de dados,
+- 🚀 O projeto é implantado no Vercel.
 
 &nbsp;
 ## Funcionalidades em produção
 
-- Temas black
-- Migração para NextJs
-- Login com Google (conexão de um usuário)
+- 📱 Temas black
+- 💻 Migração para NextJs para server-side rendering.
+- 🔒 Login com Google (conexão de um usuário) e autenticação
 
 &nbsp;
 ## Stack utilizada
