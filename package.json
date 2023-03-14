@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "npx nodemon api/index.js",
-    "vercel-deploy": "npx nodemon api/index.js",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-deploy": "npx nodemon api/index.js"
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
