@@ -48,3 +48,14 @@ Este projeto faz parte do meu portfólio, ficarei feliz em receber feedback sobr
 Email: renarasecchim@hotmail.com
 
 Conecte-se comigo [Linkedin](https://www.linkedin.com/in/renarasecchim/)
+
+&nbsp;
+## Rodar projeto na sua maquina
+
+```bash
+npm run dev
+# ou
+yarn dev
+# ou
+pnpm dev
+```
