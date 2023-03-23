@@ -15,7 +15,7 @@ function App() {
   const [listTasks, setListTasks] = useState(arrayTasks)
 
   useEffect(() => {
-    fetch("http://localhost:3969/")
+    fetch("https://tasks-list-react-api.vercel.app/")
       .then(response => response.json())
       .then(data => setArrayTasks(data))
       .catch(error => console.error(error));
@@ -40,7 +40,7 @@ function App() {
   const addTasks = () => {
     if (!task) return notifyError()
 
-    axios.post("http://localhost:3969/", {
+    axios.post("https://tasks-list-react-api.vercel.app/", {
         name: task,
         status : false,
     }) .then(response => {
@@ -52,7 +52,7 @@ function App() {
   }
 
   const removeTasks = (id) => {
-    axios.delete(`http://localhost:3969/${id}`,{
+    axios.delete(`https://tasks-list-react-api.vercel.app/${id}`,{
       data: {
         id
       }
@@ -63,7 +63,7 @@ function App() {
   }
 
   const updateTask = (id, status, name) => {
-    axios.put(`http://localhost:3969/${id}`, {
+    axios.put(`https://tasks-list-react-api.vercel.app/${id}`, {
       id,
       name,
       status: !status,
