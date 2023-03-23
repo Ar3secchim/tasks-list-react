@@ -3,13 +3,20 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "eslint:recommended",
-    "overrides": [
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:jsx-fragments/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "plugins": [
+      "jsx-fragments"
+    ],
     "rules": {
+      "jsx-fragments/react-in-fragment-scope": false,
+      "jsx-fragments/fragment-uses-react": "error"
     }
 }

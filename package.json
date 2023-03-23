@@ -26,6 +26,7 @@
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
     "eslint": "^8.35.0",
+    "eslint-plugin-jsx-fragments": "^0.2.0",
     "nodemon": "^2.0.21",
     "prisma": "^4.11.0",
     "vite": "^4.0.0",
