@@ -10,6 +10,17 @@ import { Container, Title } from './styles'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
+  const [task, setTask] = useState("")
+  const [ arrayTasks, setArrayTasks] = useState([])
+  const [listTasks, setListTasks] = useState(arrayTasks)
+
+  useEffect(() => {
+    fetch("http://localhost:3969/")
+      .then(response => response.json())
+      .then(data => setArrayTasks(data))
+      .catch(error => console.error(error));
+  }, [listTasks]);
+
   const notifyError = () => {
     toast.error("Adicione um tarefa", {
       position: "top-center",
@@ -26,62 +37,43 @@ function App() {
     });
   }
 
-  const [task, setTask] = useState("")
-  const [listTasks, setListTasks] = useState([])
-
-  useEffect(() => {
-      fetch("http://localhost:3000")
-      .then(response => response.json())
-      .then(data => setListTasks(data))
-      .catch(error => console.error(error));
-  }, [listTasks]);
-
   const addTasks = () => {
     if (!task) return notifyError()
 
-    axios.post("http://localhost:3000/", {
+    axios.post("http://localhost:3969/", {
         name: task,
         status : false,
     }) .then(response => {
-      setTask("")
-    })
-    .catch(error => {
-      console.log(error);
-    });
+      setListTasks(arrayTasks.push(data => response.data ))
+    }).catch(error => console.log(error))
 
     notifyTaskAdd()
     setTask("")
   }
 
   const removeTasks = (id) => {
-    axios.delete(`http://localhost:3000/${id}`,{
+    axios.delete(`http://localhost:3969/${id}`,{
       data: {
         id
       }
     })
     .then(response => {
-      setListTasks(listTasks.filter(data => task.id !== id))
-    })
-    .catch(error => {
-      console.log(error);
-    })
+      setListTasks(arrayTasks.filter(data => task.id !== id))
+    }).catch(error => console.log(error))
   }
 
   const updateTask = (id, status, name) => {
-    axios.put(`http://localhost:3000/${id}`, {
+    axios.put(`http://localhost:3969/${id}`, {
       id,
-      status: !status,
       name,
+      status: !status,
     })
     .then(response => {
-      setListTasks(listTasks.map(data => data.id === id
-        ? response.data :
-        {...data})
+      setListTasks(arrayTasks.map(data => data.id === id
+        ? response.data : { ...data})
       )
     })
-    .catch(error => {
-      console.log(error);
-    })
+    .catch(error => console.log(error))
   }
 
   return (
@@ -109,7 +101,7 @@ function App() {
         <Title>Quadro de tarefas</Title>
       </Container>
 
-      {listTasks.map((task) => {
+      {arrayTasks.map((task) => {
         return <CardTasks
           Name={task.name}
           key={task.id}
