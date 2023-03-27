@@ -2,31 +2,29 @@ import { ReactComponent as ImgChecked } from '../../assets/checked.svg'
 import { ReactComponent as ImgRemove } from '../../assets/remove.svg'
 import { ReactComponent as ImgUnchecked } from '../../assets/unchecked.svg'
 
-import { ContainerCard, Rows, ContainerButton } from './style';
-
 
 export function CardTasks({ Name, Status, CheckedTask, RemoveTask}) {
 
    return (
 
-      <ContainerCard  status={Status}>
-         <Rows >
-            <ContainerButton>
-               <button onClick={CheckedTask}>
+      <div className={`flex justify-between itens-center px-2 py-4 bg-white rounded-xl ${Status === true ? " border-2 border-green-500" :"border-2 border-slate-100" }`} status={Status}>
+         <div className="flex gap-4 items-center">
+            <div>
+               <button className="flex" onClick={CheckedTask}>
                   {!Status && <ImgChecked width={24} stroke="#4e5b4c"  />}
                   {Status && <ImgUnchecked width={22} />}
                </button>
-            </ContainerButton>
+            </div>
 
-            <h3>{Name}</h3>
-         </Rows>
+            <h3 className="text-lg">{Name}</h3>
+         </div>
 
-         <ContainerButton>
-            <button onClick={RemoveTask}>
+         <div>
+            <button className="flex justify-center" onClick={RemoveTask}>
                <ImgRemove width={24} stroke="#FF497D" />
             </button>
-         </ContainerButton>
+         </div>
 
-      </ContainerCard>
+      </div>
    )
 }
