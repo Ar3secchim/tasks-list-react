@@ -5,7 +5,7 @@ Projeto desenvolvido no Curso da CodarMe do Bruno Bertolini com o objetivo de ap
 &nbsp;
 ## Screenshot
 
-https://user-images.githubusercontent.com/82913620/210245877-aa7995fd-1fb2-4d27-8056-855e7530268e.mp4
+[Screencast from 28-03-2023 09:40:55.webm](https://user-images.githubusercontent.com/82913620/228239209-74f776d5-b8d2-4ebc-9796-3894cb85088d.webm)
 
 &nbsp;
 ## Funcionalidades
@@ -15,11 +15,11 @@ https://user-images.githubusercontent.com/82913620/210245877-aa7995fd-1fb2-4d27-
 - 🌈 Styled-Components é usado para estilizar o projeto.
 - 📱 O projeto é implementado usando React, NodeJs com Express e Planet-scale como banco de dados,
 - 🚀 O projeto é implantado no Vercel.
+- 📱 Temas black
 
 &nbsp;
 ## Funcionalidades em produção
 
-- 📱 Temas black
 - 💻 Migração para NextJs para server-side rendering.
 - 🔒 Login com Google (conexão de um usuário) e autenticação
 
