@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast  } from 'react-toastify';
 import axios from 'axios';
 
 import { ReactComponent as Tasks } from '../assets/tasks.svg'
 import { ReactComponent as Boards } from '../assets/board.svg'
 
-import { CardTasks } from '../components/CardTasks/CardTasks'
-import { Container, Title } from './styles'
+import { CardTasks } from '../components/CardTasks'
+import {DarkMode}  from '../components/ButtonDarkMode/index'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
@@ -39,7 +39,6 @@ function App() {
 
   const addTasks = () => {
     if (!task) return notifyError()
-
     axios.post("https://tasks-list-react-api.vercel.app/", {
         name: task,
         status : false,
@@ -77,40 +76,45 @@ function App() {
   }
 
   return (
-    <>
+    <div className="container flex flex-col items-center h-screen m-auto pt-14" >
       <ToastContainer />
-      <div>
-        <Container>
-          <Tasks />
-          <Title>Adicionar uma tarefa</Title>
+      <div className="w-4/5">
+        <div className="flex gap-4 h-20 justify-between justify-items-center ">
+          <div className="flex gap-4 items-center">
+            <Tasks />
+            <h2 className="text-xl">Adicionar uma tarefa</h2>
+          </div>
 
-        </Container>
+          <DarkMode />
+        </div>
 
-        <Container>
-          <input type="text" placeholder="Descreva sua tarefa"
+        <div className="flex gap-3 mb-10 justify-between">
+          <input className="input input-bordered w-full max-w"  type="text" placeholder="Descreva sua tarefa"
             onChange={(e) => setTask(e.target.value)}
             value={task}
           />
 
-          <button onClick={addTasks} >Adicionar tarefas</button>
-        </Container>
+          <button className="btn flex-shrink text-xs md:flex-shrink-0" onClick={addTasks} >Adicionar tarefas</button>
+        </div>
       </div>
 
-      <Container>
-        <Boards />
-        <Title>Quadro de tarefas</Title>
-      </Container>
+      <div className="flex flex-col gap-4 w-4/5">
+        <div className="flex gap-4 items-center mb-6">
+          <Boards />
+          <h2 className="text-xl">Quadro de tarefas</h2>
+        </div>
 
-      {arrayTasks.map((task) => {
-        return <CardTasks
-          Name={task.name}
-          key={task.id}
-          Status={task.status}
-          RemoveTask={() => removeTasks(task.id)}
-          CheckedTask={() => updateTask(task.id, task.status, task.name)}
-        />
-      })}
-    </>
+        {arrayTasks.map((task) => {
+          return <CardTasks
+            Name={task.name}
+            key={task.id}
+            Status={task.status}
+            RemoveTask={() => removeTasks(task.id)}
+            CheckedTask={() => updateTask(task.id, task.status, task.name)}
+          />
+        })}
+      </div>
+    </div>
   )
 }
 
