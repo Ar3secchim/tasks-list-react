@@ -7,7 +7,7 @@ export function CardTasks({ Name, Status, CheckedTask, RemoveTask}) {
 
    return (
 
-      <div className={`flex justify-between itens-center px-2 py-4 bg-white rounded-xl ${Status === true ? " border-2 border-green-500" :"border-2 border-slate-100" }`} status={Status}>
+      <div id="card" className={`flex justify-between itens-center px-2 py-4 bg-white rounded-xl ${Status === true ? " border-2 border-green-500" :"" } drop-shadow`} status={toString(Status)}>
          <div className="flex gap-4 items-center">
             <div>
                <button className="flex" onClick={CheckedTask}>
@@ -21,7 +21,7 @@ export function CardTasks({ Name, Status, CheckedTask, RemoveTask}) {
 
          <div>
             <button className="flex justify-center" onClick={RemoveTask}>
-               <ImgRemove width={24} stroke="#FF497D" />
+               <ImgRemove id="imgremove" width={24} stroke="#FF497D" />
             </button>
          </div>
 

@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[data-theme="dracula"] #card {
+  background-color:#3D4451;
+}
+
+[data-theme="dracula"] .btn {
+  border-radius: 25px;
+  background-color: #570DF8;
+}
+
+[data-theme="dracula"] .input {
+  border-radius: 25px;
+}
+
+[data-theme="dracula"] svg path{
+  stroke: white;
+}
+
+[data-theme="dracula"] #imgremove path{
+  stroke: #FF497D;
+}
