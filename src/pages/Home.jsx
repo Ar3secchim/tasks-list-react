@@ -76,7 +76,7 @@ function App() {
   }
 
   return (
-    <div className="container flex flex-col items-center h-screen" >
+    <div className="container flex flex-col items-center h-screen m-auto pt-14" >
       <ToastContainer />
       <div className="w-4/5">
         <div className="flex gap-4 h-20 justify-between justify-items-center ">
