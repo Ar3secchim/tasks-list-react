@@ -20,7 +20,7 @@ Projeto desenvolvido no Curso da CodarMe do Bruno Bertolini com o objetivo de ap
 &nbsp;
 ## Funcionalidades em produção
 
-- 💻 Migração para NextJs para server-side rendering.
+- 💻 Migração para NextJs para server-side rendering. 
 - 🔒 Login com Google (conexão de um usuário) e autenticação
 
 &nbsp;
@@ -38,7 +38,7 @@ Projeto desenvolvido no Curso da CodarMe do Bruno Bertolini com o objetivo de ap
 &nbsp;
 ## Maiores desafios
 - Conexão com um banco de dados
-- Criação de routas com nodeJs
+- Criação de routes com nodeJs
 - Render de componetes com useStage
 
 &nbsp;
